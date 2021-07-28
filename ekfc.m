@@ -1,15 +1,15 @@
 function [A, B, C, D]=ekfc(y, u, t)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Extended Kalman Filter Based Online System Identification and Denoising             %
-%                                                                                     %
-% Modify observation matrix (H), covariance matrix of the system noise (Q)            %  
-% and covariance matrix of observation noise (R) for your model to get better results %
-%                                                                                     %
-% Author: Reza Samarghandi                                                            %
-%                                                                                     %
-% Email: Rezasamargandi@yahoo.com                                                     %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Extended Kalman Filter Based Online System Identification and Denoising with Control  %
+%                                                                                       %
+% Modify observation matrix (H), covariance matrix of the system noise (Q)              %  
+% and covariance matrix of observation noise (R) for your model to get better results   %
+%                                                                                       %
+% Author: Reza Samarghandi                                                              %
+%                                                                                       %
+% Email: Rezasamargandi@yahoo.com                                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %y: Observed Parameters
 %u: Control Inputs

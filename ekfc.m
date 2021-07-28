@@ -13,7 +13,7 @@ function [A, B, C, D]=ekfc(y, u, t)
 
 %y: Observed Parameters
 %u: Control Inputs
-
+%t: time of the simulation (used only for initial condition)
 
 C0=eye(n); %C Matrix of State Space (using this mean we call observe all of the states)
 D0=zeros(n,m); %D Matrix of State Space (using this mean we don't use feed forward)

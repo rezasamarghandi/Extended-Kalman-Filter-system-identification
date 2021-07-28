@@ -77,3 +77,4 @@ C=H(:,1:n); %C Matrix of State Space
 D=H(:,n+1:n+m); %D Matrix of State Space
 
 
+end

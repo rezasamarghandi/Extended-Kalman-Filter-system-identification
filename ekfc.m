@@ -18,8 +18,8 @@ function [A, B, C, D]=ekfc(y, u, t)
 C0=eye(n); %C Matrix of State Space (using this mean we call observe all of the states)
 D0=zeros(n,m); %D Matrix of State Space (using this mean we don't use feed forward)
 H=[C0 D0 zeros(n,(n^2+n*m))]; %observation matrix (using this mean we call observe all of the states and no feed-forward)
-Q=1000.*(H.'*H); %covariance matrix of the system noise
-R=1000.*eye(n,n); %covariance matrix of observation noise wk
+Q=(H.'*H); %covariance matrix of the system noise
+R=cov((Y-H*thetak1).'); %covariance matrix of observation noise wk
 
 
 n=size(y,1);

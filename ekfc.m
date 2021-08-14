@@ -3,8 +3,9 @@ function [A, B, C, D]=ekfc(y, u, t)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Extended Kalman Filter Based Online System Identification and Denoising with Control  %
 %                                                                                       %
-% Modify observation matrix (H), covariance matrix of the system noise (Q)              %  
-% and covariance matrix of observation noise (R) for your model to get better results   %
+% Modify observation matrix (H), covariance matrix of the system noise (Q)(line:59)     %  
+% and covariance matrix of observation noise (R)(line:62) for your model to get better  %
+% results                                                                               %
 %                                                                                       %
 % Author: Reza Samarghandi                                                              %
 %                                                                                       %
@@ -14,12 +15,13 @@ function [A, B, C, D]=ekfc(y, u, t)
 %y: Observed Parameters
 %u: Control Inputs
 %t: time of the simulation (used only for initial condition)
+global theta Pk
 
 C0=eye(n); %C Matrix of State Space (using this mean we call observe all of the states)
 D0=zeros(n,m); %D Matrix of State Space (using this mean we don't use feed forward)
 H=[C0 D0 zeros(n,(n^2+n*m))]; %observation matrix (using this mean we call observe all of the states and no feed-forward)
-Q=(H.'*H); %covariance matrix of the system noise
-R=cov((Y-H*thetak1).'); %covariance matrix of observation noise wk
+
+
 
 
 n=size(y,1);
@@ -54,8 +56,10 @@ thetak1=[X; Atp];
 F=[Atil, bbc;
    zeros(m+n*(n+m),n), eye(m+n*(n+m))];%Jacobian matrix
 
+Q=(H.'*H); %covariance matrix of the system noise
 Pk1=F*Pk*F.'+Q;
 
+R=cov((Y-H*thetak1).'); %covariance matrix of observation noise wk
 S=H*Pk1*H.'+R; %noise covariance matrix
 
 Kk=Pk1*H.'*S^-1; %Kalman gain

@@ -17,6 +17,10 @@ function [A, B, C, D]=ekfc(y, u, t)
 %t: time of the simulation (used only for initial condition)
 global theta Pk
 
+
+n=size(y,1);
+m=size(u,1);
+
 C0=eye(n); %C Matrix of State Space (using this mean we call observe all of the states)
 D0=zeros(n,m); %D Matrix of State Space (using this mean we don't use feed forward)
 H=[C0 D0 zeros(n,(n^2+n*m))]; %observation matrix (using this mean we call observe all of the states and no feed-forward)
@@ -24,8 +28,7 @@ H=[C0 D0 zeros(n,(n^2+n*m))]; %observation matrix (using this mean we call obser
 
 
 
-n=size(y,1);
-m=size(u,1);
+
 
 
 if t==0
@@ -59,7 +62,7 @@ F=[Atil, bbc;
 Q=(H.'*H); %covariance matrix of the system noise
 Pk1=F*Pk*F.'+Q;
 
-R=cov((Y-H*thetak1).'); %covariance matrix of observation noise wk
+R=cov((y-H*thetak1).'); %covariance matrix of observation noise wk
 S=H*Pk1*H.'+R; %noise covariance matrix
 
 Kk=Pk1*H.'*S^-1; %Kalman gain
